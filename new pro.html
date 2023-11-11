@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Web App</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa; /* Light gray background color */
+            color: #343a40; /* Dark text color */
+        }
+
+        header {
+            background-image: url('your-header-image.jpg'); /* Add your header image path */
+            background-size: cover;
+            color: #fff; /* White text color for better contrast */
+            text-align: center;
+            padding: 50px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 15px;
+            background-color: #fff; /* White background for product cards */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #cart {
+            background-color: #f3f3f3; /* Light gray background for the shopping cart section */
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #343a40; /* Dark background color for the footer */
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to our Shopping Web App!</h1>
+        <p>Fasion design is the art of applying design, aesthetics, clothing construction and natural beauty to clothing and its accessories.</p>
+    </header>
+
+    <main>
+        <section id="products">
+            <h2>Available Products</h2>
+            {% for product in products %}
+                <article class="product">
+                    <img src="{{ url_for('static', filename=f'product{product["id"]}.jpg') }}" alt="{{ product['name'] }}">
+                    <h3>{{ product['name'] }}</h3>
+                    <p>{{ product['description'] }}</p>
+                    <p>Price: ${{ '%.2f' % product['price'] }}</p>
+                    <button onclick="addToCart({{ product['id'] }})">Add to Cart</button>
+                </article>
+            {% endfor %}
+        </section>
+
+        <section id="cart">
+            <h2>Your Shopping Cart</h2>
+            <ul>
+                {% for item in cart_items %}
+                    <li>{{ item['name'] }}</li>
+                {% endfor %}
+            </ul>
+            <p>Total: ${{ '%.2f' % cart_total }}</p>
+            <button onclick="checkout()">Checkout</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Shopping Web App. All rights reserved.</p>
+        <p>Contact us at support@example.com</p>
+    </footer>
+
+    <script>
+        // Add your JavaScript functions here
+        function addToCart(productId) {
+            // Implement logic to add product to the cart
+        }
+
+        function checkout() {
+            // Implement logic to process the checkout
+        }
+    </script>
+</body>
+</html>
